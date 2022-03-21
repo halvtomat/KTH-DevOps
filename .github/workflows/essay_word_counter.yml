@@ -1,0 +1,8 @@
+name: Essay word counter
+on:
+  pull_request:
+    paths:
+      - '**.pdf'
+    runs-on: ubuntu-latest
+    steps:
+      - run: pdftotext **.pdf | wc -w
