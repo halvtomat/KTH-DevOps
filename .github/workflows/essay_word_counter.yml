@@ -16,4 +16,4 @@ jobs:
           ls ${{ github.workspace }}
       - name: Count words in pdf
         run: |
-          pdftotext ${{ github.workspace }}/*.pdf | wc -w
+          pdftotext ${{ github.workspace }}/*.pdf - | wc -w
