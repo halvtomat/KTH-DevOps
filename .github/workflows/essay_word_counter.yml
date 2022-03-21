@@ -7,4 +7,7 @@ jobs:
   Check-essay:
     runs-on: ubuntu-latest
     steps:
-      - run: pdftotext **.pdf | wc -w
+      - name: Install poppler-utils
+        run: sudo apt-get install poppler-utils
+      - name: Count words in pdf
+        run: bash pdftotext **.pdf | wc -w
