@@ -10,4 +10,4 @@ jobs:
       - name: Install poppler-utils
         run: sudo apt-get install poppler-utils
       - name: Count words in pdf
-        run: bash pdftotext **.pdf | wc -w
+        run: pdftotext **.pdf | wc -w
