@@ -5,13 +5,12 @@ on:
     paths:
       - '**.pdf'
 
-env:
-  LOWER_LIMIT: 2400
-  UPPER_LIMIT: 2600
-
 jobs:
   Check-essay:
     runs-on: ubuntu-latest
+    env:
+      LOWER_LIMIT: 2400
+      UPPER_LIMIT: 2600
     steps:
       - name: Install poppler-utils (Dependency)
         run: sudo apt-get install poppler-utils
