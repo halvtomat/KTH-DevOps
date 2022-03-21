@@ -3,8 +3,8 @@ on:
   pull_request:
     paths:
       - '**.pdf'
-      jobs:
-        Check-essay:
-          runs-on: ubuntu-latest
-          steps:
-            - run: pdftotext **.pdf | wc -w
+jobs:
+  Check-essay:
+    runs-on: ubuntu-latest
+    steps:
+      - run: pdftotext **.pdf | wc -w
