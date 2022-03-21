@@ -9,5 +9,7 @@ jobs:
     steps:
       - name: Install poppler-utils
         run: sudo apt-get install poppler-utils
+      - name: Print working directory and files
+        run: ls ${{ github.workspace }}
       - name: Count words in pdf
-        run: pdftotext **.pdf | wc -w
+        run: pdftotext ${{ github.workspace }}/*.pdf | wc -w
