@@ -1,19 +1,25 @@
 name: Essay word counter
+
 on:
   pull_request:
     paths:
       - '**.pdf'
+
+env:
+  LOWER_LIMIT: 2400
+  UPPER_LIMIT: 2600
+
 jobs:
   Check-essay:
     runs-on: ubuntu-latest
     steps:
-      - name: Install poppler-utils
+      - name: Install poppler-utils (Dependency)
         run: sudo apt-get install poppler-utils
       - name: Check out repository
         uses: actions/checkout@v2
-      - name: Print working directory and files
-        run: |
-          ls ${{ github.workspace }}
       - name: Count words in pdf
-        run: |
-          pdftotext ${{ github.workspace }}/*.pdf - | wc -w
+        id: word-count
+        run: echo ::set-output name=count::$(pdftotext ${{ github.workspace }}/*.pdf - | wc -w)
+      - name: Check if count is in allowed interval
+        if: steps.word-count.outputs.count < $LOWER_LIMIT || steps.word-count.outputs.count > $UPPER_LIMIT, exit 1
+
