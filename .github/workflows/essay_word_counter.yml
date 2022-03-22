@@ -24,15 +24,9 @@ jobs:
         with:
           files: '**/**.pdf'
 
-      - name: Print files
-        run: |
-          for file in ${{ steps.changed-file.outputs.any_changed }}; do
-            echo "$file "
-          done
-
       - name: Count words in pdf
         id: word-count
-        run: echo ::set-output name=count::$(pdftotext ${{ github.workspace }}/contributions/essay/**/${{ steps.changed-file.outputs.any_changed }}.pdf - | wc -w)
+        run: echo ::set-output name=count::$(pdftotext ${{ github.workspace }}/contributions/essay/**/${{ steps.changed-file.outputs.all_changed_files }}.pdf - | wc -w)
 
       - name: Check if count is in allowed interval
         if: ${{ steps.word-count.outputs.count < env.LOWER_LIMIT || steps.word-count.outputs.count > env.UPPER_LIMIT }}
