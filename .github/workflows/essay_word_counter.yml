@@ -3,7 +3,7 @@ name: Essay word counter
 on:
   pull_request:
     paths:
-      - 'contributions/essay/*/*.pdf'
+      - 'contributions/essay/**/**.pdf'
 
 jobs:
   Check-essay:
