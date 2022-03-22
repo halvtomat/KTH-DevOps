@@ -3,7 +3,7 @@ name: Essay word counter
 on:
   pull_request:
     paths:
-      - '**.pdf'
+      - 'contributions/essay/*/*.pdf'
 
 jobs:
   Check-essay:
@@ -14,12 +14,20 @@ jobs:
     steps:
       - name: Install poppler-utils (Dependency)
         run: sudo apt-get install poppler-utils
+
       - name: Check out repository
         uses: actions/checkout@v2
+
+      - name: Get changed pdf file
+        id: changed-file
+        uses: tj-actions/changed-files@v18.4
+        with:
+          files: '*.pdf'
+
       - name: Count words in pdf
         id: word-count
-        run: echo ::set-output name=count::$(pdftotext ${{ github.workspace }}/*.pdf - | wc -w)
+        run: echo ::set-output name=count::$(pdftotext ${{ github.workspace }}/contributions/essay/*/${{steps.changed-file.outputs.any_changed}}.pdf - | wc -w)
+
       - name: Check if count is in allowed interval
         if: ${{steps.word-count.outputs.count < env.LOWER_LIMIT || steps.word-count.outputs.count > env.UPPER_LIMIT}}
         run: echo word count should be between ${{env.LOWER_LIMIT}} and ${{env.UPPER_LIMIT}}, but is ${{steps.word-count.outputs.count}} && exit 1
-
