@@ -21,5 +21,5 @@ jobs:
         run: echo ::set-output name=count::$(pdftotext ${{ github.workspace }}/*.pdf - | wc -w)
       - name: Check if count is in allowed interval
         if: ${{steps.word-count.outputs.count < env.LOWER_LIMIT || steps.word-count.outputs.count > env.UPPER_LIMIT}}
-        run: exit 1
+        run: echo word count should be between ${{env.LOWER_LIMIT}} and ${{env.UPPER_LIMIT}}, but is ${{steps.word-count.outputs.count}} && exit 1
 
