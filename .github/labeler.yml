@@ -1,3 +1,4 @@
+version: 1
 labels:
 - label: "proposal"
   title: "(\s|^)(?i)(proposal|Proposal|PROPOSAL)(?-i)(\s|.|$)"
