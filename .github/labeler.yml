@@ -16,3 +16,5 @@ labels:
   body: '\n\bCategory\b\n\b(Executable tutorial|executable tutorial|Executable Tutorial| EXECUTABLE TUTORIAL)\b\n'
 - label: 'feedback'
   body: '\n\bCategory\b\n\b(Feedback|feedback|FEEDBACK)\b\n'
+- label: 'working'
+  body: "(.*)"
