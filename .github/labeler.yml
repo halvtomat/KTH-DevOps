@@ -9,7 +9,7 @@ labels:
 - label: 'demo'
   body: '\bCategory\b(\n*)\b(Demo|demo|DEMO)\b'
 - label: 'course_automation'
-  body: '\bCategory\b(\n*)\b(Course automation|course automation|COURSE AUTOMATION)\b'
+  body: 'Category(\n*)(Course automation|course automation|COURSE AUTOMATION)'
 - label: 'essay'
   body: '\bCategory\b(\n*)\b(Essay|essay|ESSAY)\b'
 - label: 'executable_tutorial'
